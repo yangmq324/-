@@ -1,0 +1,1393 @@
+```html
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width,
+             initial-scale=1.0,
+             maximum-scale=1.0,
+             user-scalable=no">
+
+<meta name="theme-color" content="#7d1118">
+
+<title>立体化党员建设学习平台</title>
+
+<style>
+
+/* =====================================================
+   基础
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+
+    width: 100%;
+    min-height: 100%;
+
+    font-family:
+        "Microsoft YaHei",
+        "PingFang SC",
+        "Noto Sans SC",
+        Arial,
+        sans-serif;
+
+    color: #fff;
+
+    background:
+        radial-gradient(
+            circle at 50% 15%,
+            rgba(190, 40, 45, .30),
+            transparent 38%
+        ),
+        linear-gradient(
+            160deg,
+            #180305 0%,
+            #42070d 45%,
+            #100203 100%
+        );
+
+}
+
+/* =====================================================
+   页面
+===================================================== */
+
+.page {
+
+    width: 100%;
+    min-height: 100vh;
+
+    overflow-x: hidden;
+
+    position: relative;
+
+    padding-bottom: 35px;
+
+}
+
+/* =====================================================
+   背景网格
+===================================================== */
+
+.grid {
+
+    position: fixed;
+
+    left: -50%;
+    top: 30%;
+
+    width: 200%;
+    height: 80%;
+
+    pointer-events: none;
+
+    opacity: .12;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,.15) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.15) 1px,
+            transparent 1px
+        );
+
+    background-size: 35px 35px;
+
+    transform:
+        perspective(400px)
+        rotateX(55deg);
+
+}
+
+/* =====================================================
+   光晕
+===================================================== */
+
+.light {
+
+    position: fixed;
+
+    width: 320px;
+    height: 320px;
+
+    left: 50%;
+    top: 30%;
+
+    transform:
+        translate(-50%, -50%);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(220,40,45,.25),
+            transparent 70%
+        );
+
+    filter: blur(30px);
+
+    pointer-events: none;
+
+}
+
+/* =====================================================
+   顶部
+===================================================== */
+
+.header {
+
+    position: relative;
+
+    padding:
+        32px
+        22px
+        10px;
+
+    text-align: center;
+
+    z-index: 5;
+
+}
+
+.header-small {
+
+    font-size: 10px;
+
+    letter-spacing: 4px;
+
+    color:
+        rgba(255,220,170,.72);
+
+    margin-bottom: 9px;
+
+}
+
+.header h1 {
+
+    font-size: 27px;
+
+    letter-spacing: 4px;
+
+    line-height: 1.4;
+
+    font-weight: 700;
+
+    background:
+        linear-gradient(
+            180deg,
+            #fff6df,
+            #ffd18e,
+            #e49b42
+        );
+
+    -webkit-background-clip: text;
+
+    background-clip: text;
+
+    color: transparent;
+
+}
+
+.header-line {
+
+    width: 190px;
+
+    height: 1px;
+
+    margin:
+        12px auto;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #e7a45c,
+            transparent
+        );
+
+}
+
+.header-desc {
+
+    font-size: 11px;
+
+    color:
+        rgba(255,255,255,.55);
+
+    letter-spacing: 2px;
+
+}
+
+/* =====================================================
+   中央 3D 主体
+===================================================== */
+
+.hero {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 270px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    perspective: 800px;
+
+}
+
+/* 光环 */
+
+.ring {
+
+    position: absolute;
+
+    width: 210px;
+    height: 210px;
+
+    border-radius: 50%;
+
+    border:
+        1px solid
+        rgba(255,190,120,.18);
+
+    transform:
+        rotateX(65deg)
+        rotateZ(-10deg);
+
+    box-shadow:
+        0 0 40px
+        rgba(220,40,45,.12);
+
+}
+
+.ring::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 20px;
+
+    border-radius: 50%;
+
+    border:
+        1px solid
+        rgba(255,190,120,.12);
+
+}
+
+/* =====================================================
+   中央卡片
+===================================================== */
+
+.core {
+
+    width: 210px;
+
+    height: 185px;
+
+    position: relative;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    border-radius: 25px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(132,20,28,.98),
+            rgba(50,5,10,.98)
+        );
+
+    border:
+        1px solid
+        rgba(255,210,155,.38);
+
+    box-shadow:
+
+        0 25px 50px
+        rgba(0,0,0,.55),
+
+        0 0 35px
+        rgba(210,40,45,.22),
+
+        inset 0 1px
+        rgba(255,255,255,.12);
+
+    transform:
+        rotateX(5deg)
+        rotateY(-5deg)
+        translateZ(40px);
+
+}
+
+/* 卡片顶部金线 */
+
+.core::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 13px;
+
+    left: 25px;
+
+    right: 25px;
+
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,220,170,.65),
+            transparent
+        );
+
+}
+
+/* 五角星 */
+
+.star {
+
+    font-size: 48px;
+
+    color: #e9373d;
+
+    line-height: 1;
+
+    margin-bottom: 13px;
+
+    filter:
+        drop-shadow(
+            0 0 12px
+            rgba(245,50,50,.55)
+        );
+
+}
+
+/* 中央标题 */
+
+.core h2 {
+
+    font-size: 20px;
+
+    letter-spacing: 3px;
+
+    color: #ffe2b7;
+
+}
+
+.core p {
+
+    margin-top: 8px;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    color:
+        rgba(255,255,255,.55);
+
+}
+
+/* =====================================================
+   学习平台区域
+===================================================== */
+
+.platform-title {
+
+    text-align: center;
+
+    margin:
+        5px
+        0
+        18px;
+
+}
+
+.platform-title span {
+
+    font-size: 10px;
+
+    letter-spacing: 4px;
+
+    color:
+        rgba(255,210,160,.55);
+
+}
+
+.platform-title h2 {
+
+    margin-top: 5px;
+
+    font-size: 19px;
+
+    letter-spacing: 3px;
+
+    color: #ffe0b0;
+
+}
+
+/* =====================================================
+   卡片列表
+===================================================== */
+
+.platform-list {
+
+    width: 100%;
+
+    padding:
+        0
+        18px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 16px;
+
+}
+
+/* =====================================================
+   单个学习卡片
+===================================================== */
+
+.platform-card {
+
+    width: 100%;
+
+    min-height: 145px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: 19px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(82,10,16,.96),
+            rgba(30,3,7,.98)
+        );
+
+    border:
+        1px solid
+        rgba(255,210,160,.22);
+
+    box-shadow:
+        0 15px 30px
+        rgba(0,0,0,.38),
+
+        inset 0 1px
+        rgba(255,255,255,.06);
+
+    transform-style: preserve-3d;
+
+    transition:
+        transform .25s ease,
+        border-color .25s ease,
+        box-shadow .25s ease;
+
+    cursor: pointer;
+
+}
+
+/* 左侧红色光条 */
+
+.platform-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 4px;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            180deg,
+            #ef4a47,
+            #a8131d
+        );
+
+    box-shadow:
+        0 0 15px
+        rgba(230,40,45,.45);
+
+}
+
+/* 背景光 */
+
+.platform-card::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 150px;
+    height: 150px;
+
+    right: -70px;
+    top: -70px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(200,35,42,.18),
+            transparent 70%
+        );
+
+}
+
+/* =====================================================
+   卡片内容
+===================================================== */
+
+.card-content {
+
+    position: relative;
+
+    z-index: 2;
+
+    min-height: 145px;
+
+    padding:
+        21px
+        20px
+        18px
+        25px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+}
+
+.card-top {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+}
+
+.card-number {
+
+    font-family: Arial;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    color:
+        rgba(255,200,145,.5);
+
+}
+
+.card-icon {
+
+    width: 37px;
+    height: 37px;
+
+    border-radius: 11px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        rgba(160,25,32,.32);
+
+    border:
+        1px solid
+        rgba(255,210,160,.16);
+
+    color:
+        #ffd39b;
+
+    font-size: 17px;
+
+}
+
+.card-title {
+
+    font-size: 19px;
+
+    color: #ffe0b2;
+
+    letter-spacing: 1px;
+
+    margin-top: 3px;
+
+}
+
+.card-description {
+
+    margin-top: 5px;
+
+    font-size: 11px;
+
+    line-height: 1.65;
+
+    color:
+        rgba(255,255,255,.48);
+
+    max-width: 78%;
+
+}
+
+.card-bottom {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+}
+
+.card-tag {
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+
+    color:
+        rgba(255,210,160,.5);
+
+}
+
+.card-enter {
+
+    font-size: 10px;
+
+    color:
+        #ffd5a0;
+
+    letter-spacing: 1px;
+
+}
+
+/* =====================================================
+   点击效果
+===================================================== */
+
+.platform-card:active {
+
+    transform:
+        scale(.97)
+        translateY(2px);
+
+    border-color:
+        rgba(255,210,160,.55);
+
+    box-shadow:
+        0 8px 20px
+        rgba(0,0,0,.5);
+
+}
+
+/* =====================================================
+   底部
+===================================================== */
+
+.footer {
+
+    padding:
+        28px
+        20px
+        10px;
+
+    text-align: center;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    color:
+        rgba(255,255,255,.25);
+
+}
+
+/* =====================================================
+   粒子
+===================================================== */
+
+.particle {
+
+    position: fixed;
+
+    width: 2px;
+    height: 2px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,190,130,.65);
+
+    pointer-events: none;
+
+    animation:
+        floatUp linear infinite;
+
+}
+
+@keyframes floatUp {
+
+    from {
+
+        transform:
+            translateY(100vh);
+
+        opacity: 0;
+
+    }
+
+    20% {
+
+        opacity: .7;
+
+    }
+
+    80% {
+
+        opacity: .4;
+
+    }
+
+    to {
+
+        transform:
+            translateY(-10vh);
+
+        opacity: 0;
+
+    }
+
+}
+
+/* =====================================================
+   小屏手机进一步适配
+===================================================== */
+
+@media(max-width:360px) {
+
+    .header h1 {
+
+        font-size: 23px;
+
+    }
+
+    .hero {
+
+        height: 250px;
+
+    }
+
+    .core {
+
+        width: 190px;
+        height: 170px;
+
+    }
+
+    .platform-list {
+
+        padding:
+            0
+            14px;
+
+    }
+
+}
+
+/* =====================================================
+   平板
+===================================================== */
+
+@media(min-width:600px) {
+
+    .page {
+
+        max-width: 600px;
+
+        margin: 0 auto;
+
+    }
+
+    .platform-list {
+
+        padding:
+            0
+            30px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="page">
+
+
+    <!-- 背景 -->
+
+    <div class="grid"></div>
+
+    <div class="light"></div>
+
+
+    <!-- =================================================
+         顶部
+    ================================================= -->
+
+    <header class="header">
+
+        <div class="header-small">
+            PARTY MEMBER EDUCATION
+        </div>
+
+        <h1>
+            立体化党员建设学习平台
+        </h1>
+
+        <div class="header-line"></div>
+
+        <div class="header-desc">
+            学思践悟 · 知行合一
+        </div>
+
+    </header>
+
+
+    <!-- =================================================
+         中央 3D
+    ================================================= -->
+
+    <section class="hero">
+
+        <div class="ring"></div>
+
+        <div class="core">
+
+            <div class="star">
+                ★
+            </div>
+
+            <h2>
+                党员学习中心
+            </h2>
+
+            <p>
+                多维学习 · 深度教育
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         平台标题
+    ================================================= -->
+
+    <section class="platform-title">
+
+        <span>
+            LEARNING RESOURCES
+        </span>
+
+        <h2>
+            学习资源入口
+        </h2>
+
+    </section>
+
+
+    <!-- =================================================
+         五个平台
+    ================================================= -->
+
+    <section class="platform-list">
+
+
+        <!-- 01 -->
+
+        <div
+            class="platform-card"
+            onclick="
+                openPlatform(
+                    'https://www.12371.cn/'
+                )
+            ">
+
+            <div class="card-content">
+
+                <div class="card-top">
+
+                    <div class="card-number">
+                        PLATFORM · 01
+                    </div>
+
+                    <div class="card-icon">
+                        ★
+                    </div>
+
+                </div>
+
+
+                <div>
+
+                    <div class="card-title">
+                        共产党员网
+                    </div>
+
+                    <div class="card-description">
+                        党员教育、党建资讯、党务知识及理论学习资源。
+                    </div>
+
+                </div>
+
+
+                <div class="card-bottom">
+
+                    <div class="card-tag">
+                        权威党建学习平台
+                    </div>
+
+                    <div class="card-enter">
+                        进入学习 →
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- 02 -->
+
+        <div
+            class="platform-card"
+            onclick="
+                openPlatform(
+                    'https://www.xuexi.cn/'
+                )
+            ">
+
+            <div class="card-content">
+
+                <div class="card-top">
+
+                    <div class="card-number">
+                        PLATFORM · 02
+                    </div>
+
+                    <div class="card-icon">
+                        学
+                    </div>
+
+                </div>
+
+
+                <div>
+
+                    <div class="card-title">
+                        学习强国
+                    </div>
+
+                    <div class="card-description">
+                        思想理论、时政新闻、文化知识与综合学习资源。
+                    </div>
+
+                </div>
+
+
+                <div class="card-bottom">
+
+                    <div class="card-tag">
+                        理论学习
+                    </div>
+
+                    <div class="card-enter">
+                        进入学习 →
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- 03 -->
+
+        <div
+            class="platform-card"
+            onclick="
+                openPlatform(
+                    'https://mp.weixin.qq.com/s/IZ-7fns4tyh3EMC4i52ZCA'
+                )
+            ">
+
+            <div class="card-content">
+
+                <div class="card-top">
+
+                    <div class="card-number">
+                        PLATFORM · 03
+                    </div>
+
+                    <div class="card-icon">
+                        理
+                    </div>
+
+                </div>
+
+
+                <div>
+
+                    <div class="card-title">
+                        理论在线
+                    </div>
+
+                    <div class="card-description">
+                        通过微信公众号开展理论学习，了解思想理论动态。
+                    </div>
+
+                </div>
+
+
+                <div class="card-bottom">
+
+                    <div class="card-tag">
+                        理论学习 · 微信公众号
+                    </div>
+
+                    <div class="card-enter">
+                        阅读学习 →
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- 04 -->
+
+        <div
+            class="platform-card"
+            onclick="
+                openPlatform(
+                    'http://www.hongchuancheng.com/?bd_vid=10617806997203975215'
+                )
+            ">
+
+            <div class="card-content">
+
+                <div class="card-top">
+
+                    <div class="card-number">
+                        PLATFORM · 04
+                    </div>
+
+                    <div class="card-icon">
+                        红
+                    </div>
+
+                </div>
+
+
+                <div>
+
+                    <div class="card-title">
+                        红色教育基地
+                    </div>
+
+                    <div class="card-description">
+                        依托红色文化资源开展教育学习，传承红色基因。
+                    </div>
+
+                </div>
+
+
+                <div class="card-bottom">
+
+                    <div class="card-tag">
+                        红色文化 · 教育实践
+                    </div>
+
+                    <div class="card-enter">
+                        红色教育 →
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- 05 -->
+
+        <div
+            class="platform-card"
+            onclick="
+                openPlatform(
+                    'https://www.bjcc.gov.cn/getCmsChannel.htm?channelId=387'
+                )
+            ">
+
+            <div class="card-content">
+
+                <div class="card-top">
+
+                    <div class="card-number">
+                        PLATFORM · 05
+                    </div>
+
+                    <div class="card-icon">
+                        京
+                    </div>
+
+                </div>
+
+
+                <div>
+
+                    <div class="card-title">
+                        北京党员教育网
+                    </div>
+
+                    <div class="card-description">
+                        北京地区党员教育资源、党建学习及专题教育内容。
+                    </div>
+
+                </div>
+
+
+                <div class="card-bottom">
+
+                    <div class="card-tag">
+                        北京党员教育
+                    </div>
+
+                    <div class="card-enter">
+                        进入平台 →
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+    <!-- =================================================
+         底部
+    ================================================= -->
+
+    <footer class="footer">
+
+        立体化党员建设学习平台
+
+        <br>
+
+        <span>
+            学思践悟 · 知行合一
+        </span>
+
+    </footer>
+
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   打开网站
+===================================================== */
+
+function openPlatform(url) {
+
+    window.location.href = url;
+
+}
+
+
+/* =====================================================
+   创建粒子
+===================================================== */
+
+function createParticles() {
+
+    const count = 22;
+
+    for (
+        let i = 0;
+        i < count;
+        i++
+    ) {
+
+        const p =
+            document.createElement("div");
+
+        p.className =
+            "particle";
+
+        p.style.left =
+            Math.random() * 100 + "%";
+
+        p.style.animationDuration =
+            (
+                8 +
+                Math.random() * 12
+            ) + "s";
+
+        p.style.animationDelay =
+            (
+                Math.random() * 10
+            ) + "s";
+
+        document.body.appendChild(p);
+
+    }
+
+}
+
+createParticles();
+
+
+/* =====================================================
+   手机触摸 3D 效果
+===================================================== */
+
+const cards =
+    document.querySelectorAll(
+        ".platform-card"
+    );
+
+
+cards.forEach(function(card) {
+
+    card.addEventListener(
+        "touchstart",
+        function(e) {
+
+            const touch =
+                e.touches[0];
+
+            const rect =
+                card.getBoundingClientRect();
+
+            const x =
+                touch.clientX -
+                rect.left;
+
+            const y =
+                touch.clientY -
+                rect.top;
+
+            const centerX =
+                rect.width / 2;
+
+            const centerY =
+                rect.height / 2;
+
+            const rotateY =
+                (x - centerX)
+                / centerX
+                * 4;
+
+            const rotateX =
+                -(y - centerY)
+                / centerY
+                * 4;
+
+            card.style.transform =
+                `
+                perspective(600px)
+                rotateX(${rotateX}deg)
+                rotateY(${rotateY}deg)
+                scale(.985)
+                `;
+
+        },
+        {
+            passive: true
+        }
+    );
+
+
+    card.addEventListener(
+        "touchend",
+        function() {
+
+            card.style.transform =
+                "";
+
+        }
+    );
+
+});
+
+</script>
+
+</body>
+
+</html>
+
